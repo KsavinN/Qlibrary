@@ -25,12 +25,14 @@ const typeDefs = gql`
         title: String!
         cover: Image!
         author: Author!
+        users: [User!]!
     }
 
     type User {
         name: String!
         email: String!
         avatar: Avatar!
+        books: [Book!]!
     }
 
     type Image {

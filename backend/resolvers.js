@@ -2,22 +2,24 @@ const db = require("./db");
 
 const resolvers = {
     Query: {
-        users: parent => {
-          console.log("Query's parent", parent);
-          return parent.users;
-        },
+        users: (rootValue, arg, { db }) => db.getAllUsers(),
+        books: (rootValue, arg, { db }) => db.getAllBooks(),
+        authors: (rootValue,arg, { db }) =>db.getAllAuthors(),
         randomBook: () => db.getRandomProperty("books"),
         randomAuthor: () => db.getRandomProperty("authors"),
         randomUser: () => db.getRandomProperty("users")
     },
     Book: {
-        title: parent => parent.title.toUpperCase(),
-        author: parent => db.getAuthorById(parent.authorId),
+        author: (book, arg, { db }) => db.getAuthorById(book.authorId),
+        users: (book, arg, { db }) => book.usersId.map(db.getUserById) ,
         cover: book => ({ path: book.coverPath })
     },
     Author: {
-        books: author => author.bookIds.map(db.getBookById),
+        books: (author, arg , { db }) => author.bookIds.map(db.getBookById),
         photo: author => ({path: author.photoPath})
+    },
+    User: {
+        books: (user, arg , { db } ) => user.bookIds.map(db.getBookById)
     },
     Avatar: {
         image: avatar => ({path: avatar.pathAvatar })    

@@ -1,6 +1,5 @@
 const { ApolloServer } = require('apollo-server');
 const typeDefs = require('./typeDefs');
-const rootValue = require('./rootValue');
 const resolvers = require('./resolvers');
 const db = require('./db');
 const PORT = process.env.PORT || 4000;
@@ -8,10 +7,10 @@ const PrefixUrlBase = process.env.PrefixUrlBase || 'http://examples.devmastery.p
 
 
 const server = new ApolloServer({
-    rootValue,
     resolvers,
     typeDefs,
     context: {
+        db,
         prefixUrlBase : PrefixUrlBase
     },
     introspection: true,

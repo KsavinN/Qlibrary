@@ -159,11 +159,15 @@ const data = {
       )[0],
       10
     );
+
+  const getUsersIdByBookId = bookId => Object.entries(data.bookIdsByUserId).filter(([authorId, bookIds]) =>
+  bookIds.includes(bookId)).map(([authorId, bookIds]) => Number(authorId))
   
   const getBookById = id => ({
     ...data.books[id - 1],
     id,
-    authorId: getAuthorIdByBookId(id)
+    authorId: getAuthorIdByBookId(id),
+    usersId: getUsersIdByBookId(id)
   });
 
   const getAllBooks = () => data.books.map((book, index) => getBookById(index + 1));
@@ -185,9 +189,10 @@ const data = {
   
   const getUserById = id => ({
     ...data.users[id - 1],
-    id
+    id,
+    bookIds: data.bookIdsByUserId[id]
   });
-  
+ 
   const getAllUsers = () =>
     data.users.map((user, index) => getUserById(index + 1));
   
@@ -198,7 +203,7 @@ const data = {
     getBookById,
     getAuthorById,
     getUserById,
-    getRandomProperty
+    getRandomProperty,
   };
   module.exports = db;
   

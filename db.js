@@ -101,7 +101,7 @@ const data = {
         email: "alice@example.com",
         avatar: {
           image: {
-            pathAvatar: "assets/images/avatars/w13.png"
+            pathAvatar: "/images/avatars/w13.png"
           },
           color: "yellow"
         }
@@ -111,7 +111,7 @@ const data = {
         email: "bob@example.com",
         avatar: {
           image: {
-            pathAvatar: "assets/images/avatars/m10.png"
+            pathAvatar: "/images/avatars/m10.png"
           },
           color: "green"
         }
@@ -121,7 +121,7 @@ const data = {
         email: "celine@example.com",
         avatar: {
           image: {
-            pathAvatar: "assets/images/avatars/w2.png"
+            pathAvatar: "/images/avatars/w2.png"
           },
           color: "red"
         }
@@ -131,7 +131,7 @@ const data = {
         email: "dan@example.com",
         avatar: {
           image: {
-            pathAvatar: "assets/images/avatars/m25.png"
+            pathAvatar: "/images/avatars/m25.png"
           },
           color: "blue"
         }
@@ -161,7 +161,7 @@ const data = {
     );
 
   const getUsersIdByBookId = bookId => Object.entries(data.bookIdsByUserId).filter(([authorId, bookIds]) =>
-  bookIds.includes(bookId)).map(([authorId, bookIds]) => Number(authorId))
+  bookIds.includes(bookId)).map(([UsersId, bookIds]) => Number(UsersId))
   
   const getBookById = id => ({
     ...data.books[id - 1],

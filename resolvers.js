@@ -21,7 +21,7 @@ const resolvers = {
         books: (user, arg , { db } ) => user.bookIds.map(db.getBookById)
     },
     Avatar: {
-        image: avatar => ({path: avatar.pathAvatar })    
+        image: avatar => ({ path: avatar.image.pathAvatar })
     },
     Image: {
         url: (image,args,{prefixUrlBase}) => prefixUrlBase + image.path 

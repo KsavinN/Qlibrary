@@ -178,10 +178,10 @@ const data = {
     bookIds: data.bookIdsByAuthorId[id]
   });
   
-  const getRandomProperty = prop => {
+  const getRandomIndexProperty = prop => {
     const dataProp = data[prop];
     const index = Math.round(Math.random() * (dataProp.length - 1));
-    return dataProp[index];
+    return index;
   };
   
   const getAllAuthors = () =>
@@ -203,7 +203,7 @@ const data = {
     getBookById,
     getAuthorById,
     getUserById,
-    getRandomProperty,
+    getRandomIndexProperty,
   };
   module.exports = db;
   

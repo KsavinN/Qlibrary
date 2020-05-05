@@ -1,13 +1,12 @@
-const db = require("./db");
 
 const resolvers = {
     Query: {
         users: (rootValue, arg, { db }) => db.getAllUsers(),
         books: (rootValue, arg, { db }) => db.getAllBooks(),
-        authors: (rootValue,arg, { db }) =>db.getAllAuthors(),
-        randomBook: () => db.getRandomProperty("books"),
-        randomAuthor: () => db.getRandomProperty("authors"),
-        randomUser: () => db.getRandomProperty("users")
+        authors: (rootValue,arg, { db }) => db.getAllAuthors(),
+        randomBook: (rootValue,arg, { db }) => db.getBookById(db.getRandomIndexProperty("books")),
+        randomAuthor: (rootValue,arg, { db }) => db.getAuthorById(db.getRandomIndexProperty("authors")),
+        randomUser: (rootValue,arg, { db }) => db.getUserById(db.getRandomIndexProperty("users"))
     },
     Book: {
         author: (book, arg, { db }) => db.getAuthorById(book.authorId),
